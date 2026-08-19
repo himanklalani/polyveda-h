@@ -6,6 +6,7 @@ import { ProblemSolution } from "@/components/sections/ProblemSolution";
 import { IndustryGrid } from "@/components/sections/IndustryGrid";
 import { ProductsShowcase } from "@/components/sections/ProductsShowcase";
 import { CtaStrip } from "@/components/sections/CtaStrip";
+import { TcoCalculator } from "@/components/sections/TcoCalculator";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <ProductsShowcase />
       <CtaStrip />
+      <TcoCalculator />
       <KineticFlow />
       <ScrollSyncedText />
       <ScrollZoomReveal />

@@ -1,0 +1,297 @@
+.calculatorSection {
+  padding: var(--spacing-16) var(--spacing-4);
+  background-color: var(--color-bg-light);
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  gap: var(--spacing-8);
+  align-items: center;
+  width: 100%;
+}
+
+.leftCol {
+  flex: 1;
+  max-width: 600px;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: 9999px;
+  background-color: rgba(6, 30, 41, 0.05);
+  color: var(--color-text-dark);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-4);
+  border: 1px solid rgba(6, 30, 41, 0.1);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-4);
+}
+
+.description {
+  font-family: var(--font-base);
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  color: var(--color-text-muted-dark);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+/* Double Bezel Outer Shell */
+.rightCol {
+  flex: 1;
+  background-color: rgba(6, 30, 41, 0.03);
+  border-radius: 2rem;
+  padding: var(--spacing-2);
+  border: 1px solid rgba(6, 30, 41, 0.05);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+}
+
+/* Inner Core */
+.calculatorCard {
+  background-color: var(--color-surface-light);
+  border-radius: calc(2rem - var(--spacing-2));
+  padding: var(--spacing-6);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-dark);
+}
+
+.valueDisplay {
+  font-family: var(--font-base);
+  font-weight: 500;
+  color: var(--color-accent);
+  background: rgba(95, 149, 152, 0.1);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
+/* Custom Range Slider */
+.rangeInput {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(6, 30, 41, 0.1);
+  border-radius: 2px;
+  outline: none;
+  margin: var(--spacing-2) 0;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-text-dark);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(6, 30, 41, 0.2);
+  border: 2px solid var(--color-surface-light);
+  transition: transform 0.2s var(--ease-spring);
+}
+
+.rangeInput::-webkit-slider-thumb:hover, .rangeInput:active::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+
+/* Custom Dropdown */
+.customSelectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.selectInput {
+  width: 100%;
+  padding: 14px 16px;
+  padding-right: 40px;
+  font-family: var(--font-base);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-light);
+  border: 1px solid rgba(6, 30, 41, 0.1);
+  border-radius: 12px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-spring);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selectInput:hover {
+  border-color: rgba(6, 30, 41, 0.2);
+}
+
+.selectInputActive, .selectInput:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(95, 149, 152, 0.15), inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.selectArrow {
+  position: absolute;
+  right: 16px;
+  pointer-events: none;
+  color: var(--color-text-muted-dark);
+  transition: transform 0.2s var(--ease-spring), color 0.2s var(--ease-spring);
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+  color: var(--color-accent);
+}
+
+.dropdownOptions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background-color: var(--color-surface-light);
+  border: 1px solid rgba(6, 30, 41, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(6, 30, 41, 0.1);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s var(--ease-spring);
+  z-index: 50;
+}
+
+.dropdownOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownOption {
+  padding: 12px 16px;
+  font-family: var(--font-base);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--color-text-dark);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdownOption:hover {
+  background-color: rgba(6, 30, 41, 0.03);
+}
+
+.dropdownOptionSelected {
+  background-color: rgba(95, 149, 152, 0.1);
+  color: var(--color-accent);
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-2);
+  padding-top: var(--spacing-6);
+  border-top: 1px solid rgba(6, 30, 41, 0.08);
+}
+
+.resultCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.resultLabel {
+  font-family: var(--font-base);
+  font-size: 0.875rem;
+  color: var(--color-text-muted-dark);
+}
+
+.resultPrice {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  letter-spacing: -0.04em;
+  color: var(--color-text-dark);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.polyvedaResult .resultPrice {
+  color: var(--color-accent);
+}
+
+.polyvedaResult {
+  background: var(--color-bg-dark);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: 1rem;
+  margin: calc(var(--spacing-3) * -1) calc(var(--spacing-4) * -1);
+}
+
+.polyvedaResult .resultLabel {
+  color: rgba(255, 255, 255, 0.7);
+}
+.polyvedaResult .resultPrice {
+  color: var(--color-surface-light);
+}
+
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+    gap: var(--spacing-8);
+  }
+  
+  .leftCol, .rightCol {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .calculatorSection {
+    padding: var(--spacing-12) var(--spacing-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .resultsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+  
+  .polyvedaResult {
+    margin: 0;
+  }
+}
