@@ -17,14 +17,11 @@ export function ScrollSequenceCanvas({ frameCount, progress, imagePathPrefix = '
   const [loaded, setLoaded] = useState(0);
   const { setLoadProgress } = usePreloader();
 
-  // Preload frames in chunks
+  // Preload all frames in concurrent batches and track true progress
   useEffect(() => {
     let loadedCount = 0;
     const images: HTMLImageElement[] = Array(frameCount).fill(null);
     let isCancelled = false;
-
-    // Buffer to unblock preloader early
-    const BUFFER_FRAMES = Math.min(60, frameCount);
 
     const loadFrame = (i: number) => {
       return new Promise<void>((resolve) => {
@@ -34,16 +31,16 @@ export function ScrollSequenceCanvas({ frameCount, progress, imagePathPrefix = '
         const index = i.toString().padStart(3, '0');
         img.src = `${imagePathPrefix}/frame_${index}.jpg`;
         
-        img.onload = () => {
-          if (isCancelled) return;
-          images[i - 1] = img;
+        const handleDone = () => {
+          if (isCancelled) return resolve();
           loadedCount++;
           
-          // Throttle state updates: update every 5 frames, or exactly at the buffer threshold
-          if (loadedCount % 5 === 0 || loadedCount === BUFFER_FRAMES || loadedCount === frameCount) {
+          // Calculate true progress percentage across all frames
+          const progress = Math.min(100, Math.floor((loadedCount / frameCount) * 100));
+          
+          // Throttle updates: every 4 frames or when fully complete
+          if (loadedCount % 4 === 0 || loadedCount === frameCount) {
              setLoaded(loadedCount);
-             // Cap progress at 100 once buffer is reached
-             const progress = Math.min(100, Math.floor((loadedCount / BUFFER_FRAMES) * 100));
              setLoadProgress(progress);
           }
           
@@ -52,35 +49,35 @@ export function ScrollSequenceCanvas({ frameCount, progress, imagePathPrefix = '
           }
           resolve();
         };
+
+        img.onload = () => {
+          images[i - 1] = img;
+          handleDone();
+        };
+
         img.onerror = () => {
-          if (!isCancelled) resolve();
+          // Prevent hanging if a single frame fails
+          handleDone();
         };
       });
     };
 
     const startLoading = async () => {
-      // Phase 1: Load buffer frames in chunks of 10
-      const loadChunk = async (start: number, end: number) => {
-        const promises = [];
-        for (let i = start; i <= end; i++) {
-          if (i <= frameCount) promises.push(loadFrame(i));
-        }
-        await Promise.all(promises);
-      };
-
-      for (let i = 1; i <= BUFFER_FRAMES; i += 10) {
+      // High-throughput concurrent chunk size
+      const BATCH_SIZE = 16;
+      for (let i = 1; i <= frameCount; i += BATCH_SIZE) {
         if (isCancelled) return;
-        await loadChunk(i, Math.min(i + 9, BUFFER_FRAMES));
+        const chunkPromises: Promise<void>[] = [];
+        const end = Math.min(i + BATCH_SIZE - 1, frameCount);
+        for (let j = i; j <= end; j++) {
+          chunkPromises.push(loadFrame(j));
+        }
+        await Promise.all(chunkPromises);
       }
 
-      // Phase 2: Load the rest quietly in chunks of 5
-      if (frameCount > BUFFER_FRAMES) {
-        for (let i = BUFFER_FRAMES + 1; i <= frameCount; i += 5) {
-          if (isCancelled) return;
-          await loadChunk(i, Math.min(i + 4, frameCount));
-          // brief yield to let main thread breathe
-          await new Promise(r => setTimeout(r, 40));
-        }
+      if (!isCancelled) {
+        setLoaded(frameCount);
+        setLoadProgress(100);
       }
     };
 

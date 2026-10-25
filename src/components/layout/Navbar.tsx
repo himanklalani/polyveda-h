@@ -151,19 +151,16 @@ export function Navbar() {
           <Link href="/" className={styles.logoLink}>
             <motion.div 
               className={styles.floatingLogo}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
-              <motion.img
-                layoutId="site-logo"
+              <img
                 src="/PV_Logo_Blue_Color_wo_Name_Transparent_Final.png"
                 alt="Polyveda"
                 className={styles.logoImg}
                 draggable={false}
-                initial={false}
-                transition={{ type: 'spring', stiffness: 70, damping: 18, mass: 0.8 }}
               />
               <span className={styles.logoText}>Polyveda</span>
             </motion.div>

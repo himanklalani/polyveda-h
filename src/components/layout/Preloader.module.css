@@ -112,50 +112,118 @@
   z-index: 1;
 }
 
-/* Center-stage logo container */
-.logoCenter {
-  position: absolute;
-  z-index: 2;
+/* ────────────────────────────────────────────────────────
+   Flying Logo Badge: Starts in center, springs to bottom-left
+   ──────────────────────────────────────────────────────── */
+.flyingLogoBadge {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10002;
+  padding: 8px 20px 8px 12px;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
+  gap: 10px;
+  border-radius: 8px;
+  isolation: isolate;
 
-.logoImg {
-  width: clamp(170px, 24vw, 250px);
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 32px rgba(3, 44, 119, 0.10));
+  /* Frosted white glass identical to Navbar floating logo */
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border: 1px solid rgba(3, 44, 119, 0.12);
+  box-shadow: 0 12px 32px rgba(3, 44, 119, 0.12), 0 2px 6px rgba(3, 44, 119, 0.04);
   pointer-events: none;
   user-select: none;
+  transform-origin: center center;
+}
+
+.flyingLogoImg {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.flyingLogoText {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  letter-spacing: -0.5px;
+}
+
+/* ────────────────────────────────────────────────────────
+   Loading Progress & Counter
+   ──────────────────────────────────────────────────────── */
+.loadingMeta {
+  position: absolute;
+  bottom: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .loadingText {
-  position: absolute;
-  bottom: 20%;
-  z-index: 2;
-  font-family: var(--font-base);
+  font-family: var(--font-heading);
   font-size: 11px;
-  letter-spacing: 6px;
+  letter-spacing: 2.5px;
   color: #032C77;
   font-weight: 600;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.loadingPercent {
+  color: var(--color-primary);
+  font-weight: 700;
+  min-width: 38px;
 }
 
 .progressContainer {
-  position: absolute;
-  bottom: 15%;
-  z-index: 2;
-  width: 200px;
+  width: 220px;
   height: 3px;
   background: rgba(3, 44, 119, 0.08);
-  border-radius: 3px;
+  border-radius: 2px;
   overflow: hidden;
+  position: relative;
 }
 
 .progressFill {
   height: 100%;
-  background: #0066FA;
-  box-shadow: 0 0 10px rgba(0, 102, 250, 0.5);
-  transition: width 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--color-primary);
+  box-shadow: 0 0 10px rgba(0, 102, 250, 0.6);
+  transition: width 0.1s linear;
+}
+
+@media (max-width: 768px) {
+  .flyingLogoBadge {
+    padding: 6px 16px 6px 10px;
+    height: 50px;
+    box-sizing: border-box;
+  }
+
+  .flyingLogoImg {
+    height: 34px;
+  }
+
+  .flyingLogoText {
+    font-size: 17px;
+  }
+
+  .loadingMeta {
+    bottom: 18%;
+  }
+
+  .progressContainer {
+    width: 180px;
+  }
 }
