@@ -7,14 +7,13 @@ export function Footer() {
     <footer id="site-footer" className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.brandColumn}>
-          <div className={styles.brandLockup}>
+          <Link href="/" className={styles.brandLockup} aria-label="Polyveda Packaging Solutions Home">
             <img 
-              src="https://res.cloudinary.com/dzc0mfs9z/image/upload/v1782738371/08dd02e2-c75d-447f-bd54-8334f817857a_t9zcwj.png" 
-              alt="Polyveda" 
+              src="/Polyveda_Logo_Blue_Color_Transparent_Logo_v2.png" 
+              alt="Polyveda Packaging Solutions" 
               className={styles.logoImg} 
             />
-            <h2 className={styles.logoText}>Polyveda Packaging</h2>
-          </div>
+          </Link>
           <p className={styles.desc}>
             Innovative Polypropylene (PP) Corrugated Packaging Solutions.
           </p>

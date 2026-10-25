@@ -9,7 +9,14 @@ export default function AdminLayout({
   return (
     <div className={styles.adminLayout}>
       <aside className={styles.sidebar}>
-        <div className={styles.logo}>Polyveda Admin</div>
+        <div className={styles.logo}>
+          <img 
+            src="/PV_Logo_Blue_Color_wo_Name_Transparent_Final.png" 
+            alt="Polyveda" 
+            style={{ width: 28, height: 'auto', display: 'block' }} 
+          />
+          <span>Polyveda Admin</span>
+        </div>
         <nav className={styles.nav}>
           <Link href="/portal-x8f2/leads" className={styles.navLink}>
             Enquiries & Leads

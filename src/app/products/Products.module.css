@@ -12,7 +12,7 @@
 /* ── Hero ── */
 .hero {
   padding: 100px 0 100px;
-  background: radial-gradient(circle at top right, rgba(29, 84, 109, 0.2) 0%, transparent 50%);
+  background: radial-gradient(circle at top right, rgba(0, 102, 250, 0.15) 0%, transparent 50%);
 }
 
 .eyebrow {
@@ -55,8 +55,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(29, 84, 109, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(29, 84, 109, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(3, 44, 119, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(3, 44, 119, 0.045) 1px, transparent 1px);
   background-size: 40px 40px;
   background-position: center center;
   z-index: 0;
@@ -83,17 +83,18 @@
 
 .productCard {
   background-color: #FFFFFF;
-  border: 1px solid rgba(11, 18, 21, 0.08);
-  border-radius: 8px;
+  border: 1px solid rgba(3, 44, 119, 0.08);
+  border-radius: 16px;
   overflow: hidden;
-  transition: transform 300ms ease, border-color 300ms ease;
+  transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
   display: flex;
   flex-direction: column;
 }
 
 .productCard:hover {
   transform: translateY(-8px);
-  border-color: rgba(95, 149, 152, 0.4);
+  border-color: rgba(0, 102, 250, 0.4);
+  box-shadow: 0 16px 36px rgba(3, 44, 119, 0.08);
 }
 
 .imageWrapper {
@@ -133,10 +134,11 @@
   font-family: var(--font-heading);
   font-size: 11px;
   letter-spacing: 2px;
-  color: var(--color-accent);
-  border: 1px solid rgba(95, 149, 152, 0.3);
-  padding: 4px 12px;
-  border-radius: 4px;
+  color: var(--color-primary);
+  background: none;
+  border: none;
+  padding: 0;
+  text-transform: uppercase;
 }
 
 .cardTitle {
@@ -246,7 +248,7 @@
   display: inline-block;
   padding: 10px 20px;
   border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 2px;
+  border-radius: 4px;
   color: rgba(255,255,255,0.8);
   font-family: var(--font-base);
   font-size: 13px;
@@ -256,7 +258,7 @@
 }
 
 .relatedCard:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  background: rgba(95,149,152,0.08);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+  background: rgba(0, 102, 250, 0.2);
 }

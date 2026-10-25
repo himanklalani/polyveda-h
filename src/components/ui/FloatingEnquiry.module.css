@@ -16,26 +16,27 @@
   pointer-events: auto;
 }
 
-/* ── FAB Button ── */
 .fabMain {
-  width: 60px;
-  height: 60px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background-color: var(--color-accent);
-  color: var(--color-bg-dark);
+  background-color: var(--color-primary);
+  color: #FFFFFF;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 28px rgba(0, 102, 250, 0.4);
   pointer-events: auto;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2;
 }
 
 .fabMain:hover {
-  background-color: #4b7a7c;
+  background-color: var(--color-primary-hover);
+  transform: scale(1.05);
+  box-shadow: 0 10px 36px rgba(0, 102, 250, 0.5);
 }
 
 .fabMenu {

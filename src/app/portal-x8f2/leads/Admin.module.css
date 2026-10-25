@@ -91,9 +91,9 @@
 }
 
 .sourceBadge {
-  background: rgba(95, 149, 152, 0.2);
-  color: var(--color-accent);
-  border: 1px solid rgba(95, 149, 152, 0.4);
+  background: rgba(0, 102, 250, 0.12);
+  color: var(--color-primary);
+  border: 1px solid rgba(0, 102, 250, 0.3);
 }
 
 .detailsCell {

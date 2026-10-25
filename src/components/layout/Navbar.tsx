@@ -96,7 +96,7 @@ export function Navbar() {
       height: `${menuHeight}px`,
       top: "0px",
       right: "0px",
-      borderRadius: "24px",
+      borderRadius: "8px",
       transition: { type: "spring", stiffness: 60, damping: 14, mass: 1 }
     },
     closed: {
@@ -104,7 +104,7 @@ export function Navbar() {
       height: `${closedHeight}px`,
       top: `${closedOffset}px`,
       right: `${closedOffset}px`,
-      borderRadius: "24px",
+      borderRadius: "6px",
       transition: { type: "spring", stiffness: 60, damping: 14, mass: 1, delay: 0.2 }
     }
   };
@@ -158,7 +158,7 @@ export function Navbar() {
             >
               <motion.img
                 layoutId="site-logo"
-                src="https://res.cloudinary.com/dzc0mfs9z/image/upload/v1782738371/08dd02e2-c75d-447f-bd54-8334f817857a_t9zcwj.png"
+                src="/PV_Logo_Blue_Color_wo_Name_Transparent_Final.png"
                 alt="Polyveda"
                 className={styles.logoImg}
                 draggable={false}
@@ -182,6 +182,17 @@ export function Navbar() {
         >
           <div className={styles.navLinksWrapper}>
             <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  className={styles.menuCoordHeader}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <span className={styles.menuCoordText}>PV-SYS // 01 · DIRECTORY</span>
+                </motion.div>
+              )}
               {isOpen && navLinks.map((link, i) => {
                 const isHovered = hoveredNav === i;
                 return (

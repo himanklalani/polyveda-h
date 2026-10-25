@@ -67,7 +67,7 @@ export function Hero() {
 
           {/* Frame / scan label */}
           <motion.div className={styles.frameLabel} style={{ opacity: reticleOpacity }}>
-            PP CORRUGATED · SCROLL TO EXPLORE
+            SCROLL TO EXPLORE
           </motion.div>
 
           {/* ── CENTER INTRO OVERLAY ── fades as you scroll */}
@@ -89,7 +89,6 @@ export function Hero() {
 
           {/* ── TOP-LEFT ANCHOR — always visible ── */}
           <div className={styles.topLeftAnchor}>
-            <span className={styles.anchorLabel}>Product Range</span>
             <p className={styles.anchorTitle}>
               Engineered for<br />
               <span className={styles.anchorAccent}>industrial demands.</span>

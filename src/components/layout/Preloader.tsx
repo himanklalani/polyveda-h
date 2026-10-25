@@ -6,8 +6,8 @@ import { usePreloader } from '@/context/PreloaderContext';
 import { usePathname } from 'next/navigation';
 import styles from './Preloader.module.css';
 
-// Use the colour logo placed in /public as icon.png
-const LOGO_URL = '/icon.png';
+// Use the full master brand logo
+const LOGO_URL = '/Polyveda_Logo_Blue_Color_Transparent_Logo_v2.png';
 
 // Phase machine:
 //  logo   → fly  (overlay fades out while logo springs to corner)
@@ -58,6 +58,20 @@ export function Preloader() {
       animate={{ opacity: phase === 'fly' ? 0 : 1 }}
       transition={{ duration: shouldReduceMotion ? 0.01 : 0.85, ease: [0.76, 0, 0.24, 1] }}
     >
+      {/* ── Architectural CAD Laser Coordinate Lines (Qualitair Style) ── */}
+      <motion.div
+        className={styles.laserLineH}
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: phase === 'fly' ? 0 : 1 }}
+        transition={{ duration: 0.9, ease: [0.38, 0.005, 0.215, 1] }}
+      />
+      <motion.div
+        className={styles.laserLineV}
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: phase === 'fly' ? 0 : 1 }}
+        transition={{ duration: 0.9, ease: [0.38, 0.005, 0.215, 1] }}
+      />
+
       <AnimatePresence>
         {phase === 'logo' && (
           <>
@@ -79,18 +93,39 @@ export function Preloader() {
               </>
             )}
 
+            {/* CAD Target Frame around logo */}
+            <motion.div 
+              className={styles.cadFrame}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <span className={styles.cornerTL}>+</span>
+              <span className={styles.cornerTR}>+</span>
+              <span className={styles.cornerBL}>+</span>
+              <span className={styles.cornerBR}>+</span>
+              <span className={styles.coordTop}>SYS // PV-IND-2026</span>
+              <span className={styles.coordBottom}>LOC // 19.0760° N, 72.8777° E</span>
+            </motion.div>
+
             <div className={styles.logoCenter}>
               <motion.img
-                layoutId="site-logo"
                 src={LOGO_URL}
                 alt="Polyveda logo"
                 className={styles.logoImg}
                 draggable={false}
-                initial={{ opacity: 0, scale: 0.55, filter: BLUR_ANIM }}
+                initial={{ opacity: 0, scale: 0.85, filter: BLUR_ANIM }}
                 animate={{
                   opacity: 1,
                   scale: 1,
                   filter: 'blur(0px)',
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 1.05,
+                  filter: BLUR_ANIM,
+                  transition: { duration: 0.45, ease: 'easeInOut' }
                 }}
                 transition={{
                   duration: DURATION,
@@ -105,7 +140,7 @@ export function Preloader() {
               className={styles.loadingText}
               exit={{ opacity: 0, transition: { duration: 0.3 } }}
             >
-              INITIALIZING...
+              INITIALIZING CAD MATRIX...
             </motion.div>
             
             <motion.div 

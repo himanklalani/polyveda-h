@@ -1,21 +1,38 @@
 :root {
-  --color-bg-light: #FAFAFA; /* Bright Linen */
-  --color-bg-dark: #061E29; /* Deep Navy */
+  /* Surfaces: Crisp, Airy, White & Clean */
+  --color-bg-light: #FFFFFF; /* Pure Clean White */
+  --color-bg-subtle: #F8FAFC; /* Crisp Technical Porcelain */
+  --color-bg-dark: #031433; /* Deep Structural Cobalt Navy (for grounded footer / dark hero) */
   
-  --color-surface-light: #FFFFFF; /* Pure White */
-  --color-surface-dark: #1D546D; /* Ocean Blue */
+  --color-surface-light: #FFFFFF; /* Pure White Card Face */
+  --color-surface-muted: #F1F5F9; /* Subtle Card Wells */
+  --color-surface-dark: #071E4A; /* Dark Accent Substrate */
   
-  --color-text-dark: #061E29; /* Deep Navy to replace pure/slate black */
-  --color-text-light: #F3F4F4; /* Off-White */
+  /* Typographic Ink: Razor-Sharp Contrast */
+  --color-text-dark: #031D4D; /* Deep Cobalt Navy (authoritative, high contrast, on-brand) */
+  --color-text-light: #F8FAFC; /* Crisp White on dark surfaces */
   
-  --color-text-muted-dark: rgba(6, 30, 41, 0.75); /* Tinted Deep Navy for perfect harmony on light backgrounds */
-  --color-text-muted-light: rgba(243, 244, 244, 0.7); /* Muted Off-White for dark backgrounds */
+  --color-text-muted-dark: #475569; /* Balanced Slate for secondary copy on light */
+  --color-text-muted-light: rgba(248, 250, 252, 0.72); /* Muted White for dark surfaces */
   
-  --color-accent: #5F9598; /* Muted Teal */
-  --color-accent-hover: #4A7A7D;
+  /* Brand Action Accents (Derived directly from Logo) */
+  --color-primary: #0066FA; /* Electric Cobalt — Primary CTA & Interactive Energy */
+  --color-primary-hover: #1A75FF; /* Luminous Lift */
+  --color-primary-active: #0052CC; /* Deep Press */
   
-  --color-error: #e57373; 
-  --color-success: #81c784;
+  --color-secondary: #032C77; /* Deep Brand Anchor */
+  --color-accent: #0066FA; /* Backward-compatible alias for primary */
+  --color-accent-hover: #1A75FF;
+  
+  /* Technical CAD Blueprint Grid Tokens */
+  --color-grid: rgba(3, 44, 119, 0.045); /* Blueprint hairlines on white */
+  --color-grid-dark: rgba(255, 255, 255, 0.05); /* Hairlines on dark */
+  --color-grid-hairline: #E2E6EC; /* Exposed 1px Swiss Structural Grid Line */
+  --color-border: rgba(3, 44, 119, 0.09); /* Precision borders on white */
+  --color-highlight: #FFD100; /* High-Visibility Industrial Signal Yellow */
+  
+  --color-error: #EF4444; 
+  --color-success: #10B981;
 
   --font-heading: var(--font-display), sans-serif;
   --font-base: var(--font-body), sans-serif;
@@ -31,11 +48,70 @@
   --spacing-12: 96px;
   --spacing-16: 128px;
   
-  --border-radius-sm: 2px;
-  --border-radius-md: 4px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-full: 6px;
   
-  /* High-End Motion & Curves */
+  /* High-End Motion & Architectural Curves (Qualitair-Grade Physics) */
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-architectural: cubic-bezier(0.38, 0.005, 0.215, 1); /* Sharp snap with long gliding tail */
+  --ease-out-smooth: cubic-bezier(0.215, 0.61, 0.355, 1);    /* Silky deceleration for hovers & curtains */
+}
+
+/* ── Qualitair-Inspired Architectural Utilities ── */
+
+/* 1px Laser Underline for Links and Tabs */
+.cad-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.cad-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.3s var(--ease-out-smooth);
+}
+
+.cad-link:hover::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* CAD Corner Coordinate Markings */
+.cad-crosshair {
+  position: relative;
+}
+
+.cad-crosshair::before,
+.cad-crosshair::after {
+  content: '+';
+  position: absolute;
+  font-family: var(--font-base), monospace;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.cad-crosshair::before {
+  top: -6px;
+  left: -6px;
+}
+
+.cad-crosshair::after {
+  bottom: -6px;
+  right: -6px;
 }
 
 * {

@@ -11,16 +11,21 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic';
+
 import dbConnect from '@/lib/mongoose';
 import { Post } from '@/models/Post';
 
 export default async function BlogPage() {
-  await dbConnect();
-  // Fetch published posts and convert to POJOs with lean()
-  // We stringify and parse to strip complex Mongoose object properties and Dates 
-  // since Next.js expects plain JSON props from Server to Client components.
-  const rawPosts = await Post.find({ published: true }).sort({ createdAt: -1 }).lean();
-  const posts = JSON.parse(JSON.stringify(rawPosts));
+  let posts = [];
+  try {
+    await dbConnect();
+    // Fetch published posts and convert to POJOs with lean()
+    const rawPosts = await Post.find({ published: true }).sort({ createdAt: -1 }).lean();
+    posts = JSON.parse(JSON.stringify(rawPosts));
+  } catch (e) {
+    console.warn('Could not fetch blog posts during build/render (DB offline):', e);
+  }
 
   return <BlogClient posts={posts} />;
 }

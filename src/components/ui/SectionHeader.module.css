@@ -20,18 +20,17 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-primary);
   margin-bottom: 18px;
-  background: rgba(95, 149, 152, 0.08);
-  border: 1px solid rgba(95, 149, 152, 0.2);
-  border-radius: 9999px;
-  padding: 4px 14px;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .light .eyebrow {
   color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: none;
+  border: none;
 }
 
 .heading {

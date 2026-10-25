@@ -1,39 +1,27 @@
-/* ── Shell ── */
+/* ── Shell: Clean Deep Structural Navy (Zero Random Gradients or Blurry Orbs) ── */
 .section {
-  padding: clamp(40px, 6vw, 80px) 0 clamp(80px, 12vw, 160px);
-  background-color: var(--color-bg-dark);
+  padding: clamp(60px, 8vw, 110px) 0 clamp(80px, 12vw, 140px);
+  background-color: var(--color-bg-dark); /* #031433 */
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 52px;
   position: relative;
   isolation: isolate;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Subtle film grain overlay */
-.grainOverlay {
+/* Precision CAD Blueprint Hairline Grid on Dark */
+.gridOverlay {
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.35;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
   pointer-events: none;
   z-index: 0;
-}
-
-/* Ambient mouse-tracking orb */
-.ambientOrb {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(95, 149, 152, 0.12) 0%, transparent 70%);
-  top: 50%;
-  left: 30%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-  /* framer-motion will drive x and y */
-  will-change: transform;
 }
 
 /* ── Header ── */
@@ -44,185 +32,208 @@
   width: 100%;
   position: relative;
   z-index: 1;
-  will-change: transform;
 }
 
-
+/* CAD Eyebrow Badge (Zero Pill) */
+.headerEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  font-family: var(--font-base);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
 
 .title {
   font-family: var(--font-heading);
-  font-size: clamp(32px, 4vw, 64px);
+  font-size: clamp(34px, 4.5vw, 68px);
   font-weight: 600;
   letter-spacing: -2px;
-  line-height: 1.07;
-  color: var(--color-bg-light);
-  margin: 0 0 20px;
-  max-width: 640px;
+  line-height: 1.05;
+  color: #FFFFFF;
+  margin: 0 0 24px;
+  max-width: 720px;
 }
 
-.subtitle {
-  font-family: var(--font-base);
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.3);
-  display: flex;
+.titleAccent {
+  color: var(--color-primary); /* #0066FA */
+  display: inline;
+}
+
+/* Drag controller - Clean unboxed text */
+.dragHint {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-}
-.subtitle::after {
-  content: '';
-  display: inline-block;
-  width: 40px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  gap: 8px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--font-base);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  user-select: none;
 }
 
-/* ── Viewport ── */
-.viewport {
+.hintIcon {
+  font-size: 10px;
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+
+/* ── Track Shell ── */
+.trackWrapper {
   width: 100%;
-  overflow: visible;
+  overflow: hidden;
   cursor: grab;
-  padding-bottom: 24px; /* Extra bottom space so 3D cards don't clip */
   position: relative;
   z-index: 1;
 }
-.viewport:active { cursor: grabbing; }
+
+.trackWrapper:active {
+  cursor: grabbing;
+}
 
 .track {
   display: flex;
-  gap: 24px;
-  padding: 0 clamp(20px, 5vw, 80px);
+  gap: 28px;
   width: max-content;
   will-change: transform;
 }
 
-/* ── Cards ── */
+/* ── Architectural CAD Cards (Zero Pill, Clean Architectural Surfaces) ── */
 .card {
-  width: clamp(300px, 32vw, 420px);
+  width: clamp(320px, 32vw, 400px);
   flex-shrink: 0;
   position: relative;
-  /* Glow layer absolutely positioned inside */
-  overflow: visible;
   user-select: none;
+  border-radius: 6px; /* Clean industrial corner */
+  background: rgba(7, 30, 74, 0.60);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.25s var(--ease-out-smooth), transform 0.25s var(--ease-out-smooth), box-shadow 0.25s var(--ease-out-smooth);
 }
 
-/* Dynamic spotlight that follows cursor inside the card */
-.cardGlow {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(95, 149, 152, 0.22) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-  transition: opacity 0.3s ease;
-  mix-blend-mode: screen;
+.card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--color-primary);
 }
 
 .cardInner {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: clamp(24px, 3vw, 40px);
+  border-radius: 5px;
+  padding: clamp(28px, 3vw, 36px);
   display: flex;
   flex-direction: column;
-  gap: 0;
   position: relative;
-  z-index: 1;
-  transition:
-    background 0.4s ease,
-    border-color 0.4s ease,
-    box-shadow 0.4s ease;
-  transform-style: preserve-3d;
+  height: 100%;
+  min-height: 360px;
 }
 
-.card:hover .cardInner {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(95, 149, 152, 0.45);
-  box-shadow:
-    0 0 0 0.5px rgba(95, 149, 152, 0.3),
-    0 24px 60px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-/* Meta row */
+/* Meta row: Eyebrow + Metric */
 .cardMeta {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
+  gap: 12px;
 }
 
-.cardEyebrow {
+/* Technical Label - Clean unboxed text */
+.cardEyebrowBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
   font-family: var(--font-base);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
 }
 
+.eyebrowIcon {
+  display: flex;
+  align-items: center;
+  color: var(--color-primary);
+}
+
+/* Crisp Clean Metric */
 .cardNumber {
   font-family: var(--font-heading);
-  font-size: clamp(28px, 3vw, 40px);
+  font-size: clamp(34px, 3.5vw, 44px);
   font-weight: 700;
   letter-spacing: -1px;
-  color: rgba(255, 255, 255, 0.12);
-  transition: color 0.3s ease;
+  line-height: 1;
+  color: #FFFFFF;
 }
 
-/* Title with monospace feel for scramble effect */
+/* Title */
 .cardTitle {
   font-family: var(--font-heading);
-  font-size: clamp(22px, 2.5vw, 30px);
+  font-size: clamp(22px, 2.3vw, 28px);
   font-weight: 600;
   letter-spacing: -0.5px;
   line-height: 1.15;
-  color: var(--color-bg-light);
+  color: #FFFFFF;
   margin: 0 0 16px;
-  /* Monospace fallback for scramble so characters don't jump */
   font-variant-numeric: tabular-nums;
 }
 
 .cardDesc {
   font-family: var(--font-base);
-  font-size: clamp(13px, 1.3vw, 15px);
+  font-size: clamp(14px, 1.35vw, 15px);
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.45);
-  margin: 0 0 32px;
+  color: rgba(241, 245, 249, 0.75);
+  margin: 0 0 28px;
   flex-grow: 1;
 }
 
-/* Footer line + CTA */
-.cardFooter {
+/* Bottom Feature Row - Clean unboxed text */
+.cardTag {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-base);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.card:hover .cardTag {
+  color: #FFFFFF;
+}
+
+.checkIcon {
+  color: var(--color-primary);
   display: flex;
   align-items: center;
-  gap: 12px;
-  height: 20px;
-  overflow: hidden;
-}
-
-.cardLine {
-  flex: 1;
-  height: 1px;
-  background: var(--color-accent);
-  transform-origin: left center;
-}
-
-.cardCta {
-  font-family: var(--font-base);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--color-accent);
-  white-space: nowrap;
 }
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .track { gap: 16px; }
-  .ambientOrb { width: 400px; height: 400px; }
   .title { letter-spacing: -1.5px; }
+  .card { width: 290px; }
 }

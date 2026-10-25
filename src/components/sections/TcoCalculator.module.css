@@ -23,16 +23,15 @@
 
 .eyebrow {
   display: inline-block;
-  padding: var(--spacing-1) var(--spacing-3);
-  border-radius: 9999px;
-  background-color: rgba(6, 30, 41, 0.05);
-  color: var(--color-text-dark);
-  font-size: 10px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: var(--spacing-4);
-  border: 1px solid rgba(6, 30, 41, 0.1);
 }
 
 .heading {
@@ -56,7 +55,7 @@
 .rightCol {
   flex: 1;
   background-color: rgba(6, 30, 41, 0.03);
-  border-radius: 2rem;
+  border-radius: 12px;
   padding: var(--spacing-2);
   border: 1px solid rgba(6, 30, 41, 0.05);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
@@ -65,7 +64,7 @@
 /* Inner Core */
 .calculatorCard {
   background-color: var(--color-surface-light);
-  border-radius: calc(2rem - var(--spacing-2));
+  border-radius: 10px;
   padding: var(--spacing-6);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
   display: flex;
@@ -94,11 +93,12 @@
 
 .valueDisplay {
   font-family: var(--font-base);
-  font-weight: 500;
-  color: var(--color-accent);
-  background: rgba(95, 149, 152, 0.1);
-  padding: 4px 12px;
-  border-radius: 999px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: rgba(0, 102, 250, 0.08);
+  border: 1px solid rgba(0, 102, 250, 0.15);
+  padding: 4px 10px;
+  border-radius: 4px;
   font-size: 0.875rem;
 }
 
@@ -107,7 +107,7 @@
   -webkit-appearance: none;
   width: 100%;
   height: 4px;
-  background: rgba(6, 30, 41, 0.1);
+  background: rgba(3, 44, 119, 0.1);
   border-radius: 2px;
   outline: none;
   margin: var(--spacing-2) 0;
@@ -116,18 +116,18 @@
 .rangeInput::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--color-text-dark);
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--color-primary);
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(6, 30, 41, 0.2);
-  border: 2px solid var(--color-surface-light);
+  box-shadow: 0 2px 8px rgba(0, 102, 250, 0.4);
+  border: 2px solid #FFFFFF;
   transition: transform 0.2s var(--ease-spring);
 }
 
 .rangeInput::-webkit-slider-thumb:hover, .rangeInput:active::-webkit-slider-thumb {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 /* Custom Dropdown */
@@ -146,7 +146,7 @@
   color: var(--color-text-dark);
   background-color: var(--color-bg-light);
   border: 1px solid rgba(6, 30, 41, 0.1);
-  border-radius: 12px;
+  border-radius: 6px;
   outline: none;
   cursor: pointer;
   transition: all 0.2s var(--ease-spring);
@@ -161,8 +161,8 @@
 }
 
 .selectInputActive, .selectInput:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(95, 149, 152, 0.15), inset 0 2px 4px rgba(0,0,0,0.02);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 102, 250, 0.15), inset 0 2px 4px rgba(0,0,0,0.02);
 }
 
 .selectArrow {
@@ -217,8 +217,8 @@
 }
 
 .dropdownOptionSelected {
-  background-color: rgba(95, 149, 152, 0.1);
-  color: var(--color-accent);
+  background-color: rgba(0, 102, 250, 0.08);
+  color: var(--color-primary);
 }
 
 .resultsGrid {
@@ -256,17 +256,20 @@
 }
 
 .polyvedaResult {
-  background: var(--color-bg-dark);
+  background: #031433;
   padding: var(--spacing-3) var(--spacing-4);
-  border-radius: 1rem;
+  border-radius: 8px;
   margin: calc(var(--spacing-3) * -1) calc(var(--spacing-4) * -1);
+  border: 1px solid rgba(0, 102, 250, 0.2);
+  box-shadow: 0 8px 32px rgba(3, 20, 51, 0.15);
 }
 
 .polyvedaResult .resultLabel {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(248, 250, 252, 0.75);
 }
 .polyvedaResult .resultPrice {
-  color: var(--color-surface-light);
+  color: #38BDF8;
+  text-shadow: 0 0 20px rgba(0, 102, 250, 0.5);
 }
 
 @media (max-width: 992px) {

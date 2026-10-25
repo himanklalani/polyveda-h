@@ -12,13 +12,19 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic';
+
 // Next.js Server Component ensures this runs securely on the server
 export default async function SecretLeadsPanel() {
-  await dbConnect();
-  
-  // Fetch all leads, newest first
-  // Lean is used for plain JS objects in Server Components
-  const leads = await Enquiry.find().sort({ createdAt: -1 }).lean() as any[];
+  let leads: any[] = [];
+  try {
+    await dbConnect();
+    // Fetch all leads, newest first
+    // Lean is used for plain JS objects in Server Components
+    leads = await Enquiry.find().sort({ createdAt: -1 }).lean() as any[];
+  } catch (e) {
+    console.warn('Could not fetch leads (DB offline):', e);
+  }
 
   return (
     <div className={styles.adminContainer}>

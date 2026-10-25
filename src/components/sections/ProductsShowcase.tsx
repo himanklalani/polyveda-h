@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import styles from './ProductsShowcase.module.css';
 
 const products = [
@@ -125,6 +125,55 @@ export function ProductsShowcase() {
 
   return (
     <section className={styles.section} ref={sectionRef}>
+      {/* ── Top Architectural Curtain Divider Bar (Qualitair-style Guillotine Panel) ── */}
+      <div className={styles.curtainTickerBar}>
+        <div className={styles.curtainTickerInner}>
+          <div className={styles.tickerCategoryCell}>
+            <span className={styles.tickerPrefix}>01</span>
+            <Link href="/products/pp-corrugated-boxes" className={styles.tickerLink}>
+              PP CORRUGATED BOXES <span className={styles.tickerArrow}>↗</span>
+            </Link>
+          </div>
+          <div className={styles.tickerDivider} />
+          <div className={styles.tickerCategoryCell}>
+            <span className={styles.tickerPrefix}>02</span>
+            <Link href="/products/custom-pp-trays" className={styles.tickerLink}>
+              CUSTOM CNC TRAYS <span className={styles.tickerArrow}>↗</span>
+            </Link>
+          </div>
+          <div className={styles.tickerDivider} />
+          <div className={styles.tickerCategoryCell}>
+            <span className={styles.tickerPrefix}>03</span>
+            <Link href="/products/pp-trunks-crates" className={styles.tickerLink}>
+              HEAVY-DUTY TRUNKS <span className={styles.tickerArrow}>↗</span>
+            </Link>
+          </div>
+          <div className={styles.tickerDivider} />
+          <div className={styles.tickerCategoryCell}>
+            <span className={styles.tickerPrefix}>04</span>
+            <Link href="/products/floor-protection-sheets" className={styles.tickerLink}>
+              FLOOR SHEETS <span className={styles.tickerArrow}>↗</span>
+            </Link>
+          </div>
+          <div className={styles.tickerDivider} />
+          <div className={styles.tickerCategoryCell}>
+            <span className={styles.tickerPrefix}>05</span>
+            <Link href="/products/signage-retail-displays" className={styles.tickerLink}>
+              SIGNAGE & POS <span className={styles.tickerArrow}>↗</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Ultra-Subtle Architectural Watermark Ring ── */}
+      <svg className={styles.watermarkRing} viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="300" cy="300" r="290" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
+        <circle cx="300" cy="300" r="240" stroke="currentColor" strokeWidth="1" />
+        <circle cx="300" cy="300" r="160" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 6" />
+        <line x1="300" y1="0" x2="300" y2="600" stroke="currentColor" strokeWidth="0.5" />
+        <line x1="0" y1="300" x2="600" y2="300" stroke="currentColor" strokeWidth="0.5" />
+      </svg>
+
       <div className={styles.gridBackground} />
 
       <div className={styles.container}>
@@ -148,7 +197,7 @@ export function ProductsShowcase() {
           </p>
         </motion.div>
 
-        {/* Cards Grid */}
+        {/* Cards Grid with Liquid Glass & CAD Precision */}
         <motion.div
           className={styles.grid}
           variants={containerVariants}
@@ -163,8 +212,8 @@ export function ProductsShowcase() {
               whileHover={{ y: -6, transition: { duration: 0.25 } }}
             >
               <div className={styles.cardHeader}>
-                <div className={styles.cardNumber}>{product.id}</div>
-                <div className={styles.categoryPill}>{product.category}</div>
+                <div className={styles.cardNumber}>PV-CAD // {product.id}</div>
+                <span className={styles.cardCategoryLabel}>{product.category}</span>
               </div>
 
               <div className={styles.iconWrapper}>
@@ -185,15 +234,15 @@ export function ProductsShowcase() {
 
               <div className={styles.cardFooter}>
                 <div className={styles.footerLine} />
-                <Link href={`/products/${product.slug}`} className={styles.learnMore}>
-                  View Spec Sheet →
+                <Link href={`/products/${product.slug}`} className={`${styles.learnMore} cad-link`}>
+                  View Spec Sheet ↗
                 </Link>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* CTA */}
+        {/* CTA with Sliding Curtain Physics */}
         <motion.div
           className={styles.ctaRow}
           initial={{ opacity: 0 }}
@@ -201,10 +250,13 @@ export function ProductsShowcase() {
           transition={{ delay: 0.7, duration: 0.6 }}
         >
           <Link href="/products" className={styles.ctaButton}>
-            Explore Full Catalogue
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
+            <span className={styles.ctaBg} aria-hidden="true" />
+            <span className={styles.ctaLabel}>
+              Explore Full Catalogue
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </span>
           </Link>
         </motion.div>
       </div>

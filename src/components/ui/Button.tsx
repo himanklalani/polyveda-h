@@ -10,7 +10,8 @@ export function Button({ variant = 'primary', className = '', children, ...props
   
   return (
     <button className={btnClass} {...props}>
-      {children}
+      <span className={styles.buttonBg} aria-hidden="true" />
+      <span className={styles.buttonLabel}>{children}</span>
     </button>
   );
 }

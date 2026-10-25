@@ -8,8 +8,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(29, 84, 109, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(29, 84, 109, 0.07) 1px, transparent 1px);
+    linear-gradient(rgba(3, 44, 119, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(3, 44, 119, 0.045) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -59,12 +59,12 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid rgba(11, 18, 21, 0.1);
+  border-top: 1px solid rgba(3, 44, 119, 0.08);
 }
 
 .card {
   padding: 48px 40px 48px 0;
-  border-right: 1px solid rgba(11, 18, 21, 0.1);
+  border-right: 1px solid rgba(3, 44, 119, 0.08);
   position: relative;
 }
 
@@ -104,7 +104,7 @@
   font-family: var(--font-heading);
   font-size: 11px;
   letter-spacing: 3px;
-  color: rgba(11, 18, 21, 0.25);
+  color: rgba(3, 44, 119, 0.35);
   margin-bottom: 32px;
   display: block;
 }
@@ -136,7 +136,7 @@
   .card:last-child {
     padding: 40px 0;
     border-right: none;
-    border-bottom: 1px solid rgba(11, 18, 21, 0.1);
+    border-bottom: 1px solid rgba(3, 44, 119, 0.08);
   }
   .card:last-child {
     border-bottom: none;

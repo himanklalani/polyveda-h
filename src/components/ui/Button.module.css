@@ -1,36 +1,95 @@
 .button {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-2) var(--spacing-4);
-  font-family: var(--font-base);
+  gap: 10px;
+  padding: 13px 28px;
+  font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 16px;
-  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px; /* Crisp industrial CAD geometry - zero pills */
   cursor: pointer;
-  transition: all 150ms ease-in-out;
   border: 1px solid transparent;
+  text-decoration: none;
+  user-select: none;
+  isolation: isolate;
+  transition: transform 0.25s var(--ease-out-smooth), box-shadow 0.25s var(--ease-out-smooth);
 }
+
 .button:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+/* Sliding curtain background */
+.buttonBg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transform: translateY(101%);
+  transition: transform 0.32s var(--ease-out-smooth);
+}
+
+.button:hover .buttonBg {
+  transform: translateY(0%);
+}
+
+.buttonLabel {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.25s var(--ease-out-smooth);
+}
+
+/* Primary Button: Electric Cobalt base with Corporate Navy sliding curtain */
 .primary {
-  background-color: var(--color-accent);
-  color: #FFFFFF; 
+  background-color: var(--color-primary); /* #0066FA */
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(0, 102, 250, 0.22);
 }
+
+.primary .buttonBg {
+  background-color: var(--color-secondary); /* #032C77 slides up */
+}
+
 .primary:hover {
-  background-color: var(--color-accent-hover); 
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(3, 44, 119, 0.28);
 }
+
 .primary:active {
-  background-color: #3B6163;
+  transform: scale(0.98);
 }
+
+/* Outline Button: Liquid Glass substrate with Electric Cobalt sliding curtain */
 .outline {
-  background-color: transparent;
-  color: var(--color-text-light);
-  border: 1px solid rgba(243, 244, 244, 0.4);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--color-text-dark); /* #031D4D */
+  border: 1px solid rgba(0, 102, 250, 0.22);
 }
+
+.outline .buttonBg {
+  background-color: var(--color-primary); /* #0066FA slides up */
+}
+
 .outline:hover {
-  background-color: rgba(243, 244, 244, 0.1); 
-  border-color: var(--color-text-light);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 102, 250, 0.16);
+}
+
+.outline:hover .buttonLabel {
+  color: #FFFFFF;
+}
+
+.outline:active {
+  transform: scale(0.98);
 }
