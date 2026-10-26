@@ -84,19 +84,6 @@
   justify-content: flex-start;
 }
 
-.menuCoordHeader {
-  margin-bottom: 16px;
-}
-
-.menuCoordText {
-  font-family: var(--font-heading);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  opacity: 0.8;
-}
 
 .navItemContainer {
   perspective: 70px;

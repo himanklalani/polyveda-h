@@ -10,7 +10,7 @@ const STEPS = [
     num: '01', 
     title: 'CAD Design & Prototyping', 
     body: 'Bring us your heaviest, most awkward component. Our engineers model a custom solution around it using CAD software and digital cutting tables. You get a fully functional physical prototype within days, well before we touch production tooling.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200'
+    image: '/capabilities/cad_prototyping.jpg'
   },
   { 
     num: '02', 
@@ -22,7 +22,7 @@ const STEPS = [
     num: '03', 
     title: 'Ultrasonic Welding & Edge Sealing', 
     body: 'We fuse PP sheets at the molecular level using ultrasonic welding. It is stronger than any adhesive and cleaner than any staple. Edge-sealing closes open flutes completely, blocking moisture, bacteria, and dust. Required for food, pharma, and semiconductor environments.',
-    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200'
+    image: '/capabilities/ultrasonic_welding.jpg'
   },
   { 
     num: '04', 

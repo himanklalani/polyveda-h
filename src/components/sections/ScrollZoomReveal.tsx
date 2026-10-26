@@ -39,7 +39,7 @@ export function ScrollZoomReveal() {
         {/* Left Text */}
         <motion.div className={styles.sideTextContainer} style={{ opacity: textOpacity, textAlign: 'right' }}>
           <div className={styles.technicalFrame}>
-            <span className={styles.bracket}>[</span> POLYVEDA <span className={styles.bracket}>]</span>
+            POLYVEDA
           </div>
           
           <div className={styles.rotatingBadge}>
@@ -62,8 +62,8 @@ export function ScrollZoomReveal() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
-            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=2000&q=80" 
-            alt="Polyveda Manufacturing Process" 
+            src="/polyveda_facility.jpg" 
+            alt="Polyveda Automated Manufacturing Facility" 
             className={styles.image}
           />
           
@@ -82,17 +82,17 @@ export function ScrollZoomReveal() {
         {/* Right Text */}
         <motion.div className={styles.sideTextContainer} style={{ opacity: textOpacity, textAlign: 'left' }}>
           <div className={styles.technicalFrame}>
-            <span className={styles.bracket}>[</span> Capabilities <span className={styles.bracket}>]</span>
+            Capabilities
           </div>
           
           {/* Data Points */}
           <div className={styles.dataPoints}>
             <div className={styles.dataPoint}>
-              <span className={styles.dataLabel}>01 // </span>
+              <span className={styles.dataLabel}>01 </span>
               <span className={styles.dataValue}>PROCESS</span>
             </div>
             <div className={styles.dataPoint}>
-              <span className={styles.dataLabel}>02 // </span>
+              <span className={styles.dataLabel}>02 </span>
               <span className={styles.dataValue}>OUTPUT</span>
             </div>
           </div>

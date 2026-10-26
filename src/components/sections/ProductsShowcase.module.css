@@ -192,22 +192,43 @@
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background-color: #FFFFFF;
   padding: 36px 32px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   cursor: pointer;
-  transition: transform 0.3s var(--ease-out-smooth), box-shadow 0.3s var(--ease-out-smooth), border-color 0.3s var(--ease-out-smooth);
   position: relative;
+  overflow: hidden;
+  border: none;
+  isolation: isolate;
+  outline: none;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.card:hover {
+.card:hover,
+.card.cardActive {
   transform: translateY(-5px);
-  box-shadow: 0 16px 36px rgba(0, 102, 250, 0.08);
+  box-shadow: 0 16px 36px rgba(254, 223, 12, 0.28), 0 4px 12px rgba(3, 44, 119, 0.06);
   z-index: 2;
+}
+
+/* ── Rising Yellow Curtain Layer (#FEDF0C) ── */
+.cardFill {
+  position: absolute;
+  inset: 0;
+  background-color: #FEDF0C;
+  transform: translateY(101%);
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.card:hover .cardFill,
+.card.cardActive .cardFill {
+  transform: translateY(0);
+  transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ── Card Header ── */
@@ -215,6 +236,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 1;
 }
 
 .cardNumber {
@@ -223,6 +246,12 @@
   font-weight: 600;
   letter-spacing: 2px;
   color: var(--color-primary);
+  transition: color 0.45s ease;
+}
+
+.card:hover .cardNumber,
+.card.cardActive .cardNumber {
+  color: #031433;
 }
 
 .cardCategoryLabel {
@@ -232,20 +261,128 @@
   text-transform: uppercase;
   color: var(--color-text-muted-dark);
   opacity: 0.75;
+  transition: color 0.45s ease, opacity 0.45s ease;
 }
 
-/* ── Icon ── */
+.card:hover .cardCategoryLabel,
+.card.cardActive .cardCategoryLabel {
+  color: #031433;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+/* ── Dynamic Line-Drawing Animations ── */
+@keyframes drawStroke {
+  0% {
+    stroke-dashoffset: 400;
+    opacity: 0.15;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes subtleGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(0, 71, 187, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(0, 71, 187, 0.5));
+  }
+}
+
+/* ── Icon (Qualitair-inspired Circular Presentation Disc) ── */
 .iconWrapper {
-  color: rgba(3, 44, 119, 0.5);
-  transition: color 200ms ease, transform 200ms ease;
+  width: 156px;
+  height: 156px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, rgba(0, 71, 187, 0.08) 0%, rgba(3, 20, 51, 0.02) 100%);
+  border: 1.5px solid rgba(3, 44, 119, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0047BB; /* Electric Cobalt Blue */
+  margin: 6px auto 14px auto;
+  padding: 10px;
+  transition: color 0.45s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease, border-color 0.45s ease, box-shadow 0.6s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.card:hover .iconWrapper {
-  color: var(--color-primary);
-  transform: scale(1.05);
+/* Concentric Reticle Orbit Ring */
+.iconWrapper::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px dashed rgba(3, 44, 119, 0.15);
+  pointer-events: none;
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.45s ease;
+}
+
+.card:hover .iconWrapper::before,
+.card.cardActive .iconWrapper::before {
+  transform: rotate(45deg) scale(1.06);
+  border-color: rgba(3, 20, 51, 0.3);
+}
+
+.card:hover .iconWrapper,
+.card.cardActive .iconWrapper {
+  background: radial-gradient(circle at 40% 40%, rgba(3, 20, 51, 0.1) 0%, rgba(3, 20, 51, 0.03) 100%);
+  border-color: rgba(3, 20, 51, 0.28);
+  box-shadow: 0 12px 24px rgba(3, 20, 51, 0.12);
+}
+
+.iconWrapper svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: transform 0.35s var(--ease-out-smooth);
+}
+
+.iconWrapper svg path,
+.iconWrapper svg line,
+.iconWrapper svg rect {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 0;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+/* Animate stroke lines drawing on viewport entrance */
+.gridVisible .iconWrapper svg path,
+.gridVisible .iconWrapper svg line,
+.gridVisible .iconWrapper svg rect {
+  animation: drawStroke 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card:hover .iconWrapper,
+.card.cardActive .iconWrapper {
+  color: #031433; /* Dark Navy for ultra-sharp drafting contrast on Yellow */
+  background-color: rgba(255, 255, 255, 0.88);
+  border-color: rgba(3, 20, 51, 0.18);
+  transform: scale(1.06);
+  box-shadow: 0 10px 28px rgba(3, 20, 51, 0.1);
+  animation: subtleGlow 3s ease-in-out infinite;
+}
+
+.card:hover .iconWrapper svg,
+.card.cardActive .iconWrapper svg {
+  transform: translateY(-2px);
 }
 
 /* ── Body ── */
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
 .productName {
   font-family: var(--font-heading);
   font-size: 22px;
@@ -256,6 +393,12 @@
   position: relative;
   display: inline-block;
   width: fit-content;
+  transition: color 0.45s ease;
+}
+
+.card:hover .productName,
+.card.cardActive .productName {
+  color: #031433;
 }
 
 .productName::after {
@@ -265,13 +408,14 @@
   bottom: -3px;
   width: 100%;
   height: 2px;
-  background-color: var(--color-highlight);
+  background-color: var(--color-primary);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s var(--ease-out-smooth);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.card:hover .productName::after {
+.card:hover .productName::after,
+.card.cardActive .productName::after {
   transform: scaleX(1);
 }
 
@@ -281,6 +425,13 @@
   color: var(--color-accent);
   margin: 0;
   letter-spacing: 0.5px;
+  transition: color 0.45s ease;
+}
+
+.card:hover .tagline,
+.card.cardActive .tagline {
+  color: #0047BB;
+  font-weight: 600;
 }
 
 .description {
@@ -290,6 +441,12 @@
   line-height: 1.65;
   margin: 0;
   flex-grow: 1;
+  transition: color 0.45s ease;
+}
+
+.card:hover .description,
+.card.cardActive .description {
+  color: #0F172A;
 }
 
 /* ── Spec Tags ── */
@@ -297,6 +454,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  position: relative;
+  z-index: 1;
 }
 
 .specTag {
@@ -308,6 +467,15 @@
   border: 1px solid rgba(11, 18, 21, 0.08);
   color: var(--color-text-muted-dark);
   border-radius: 2px;
+  transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease;
+}
+
+.card:hover .specTag,
+.card.cardActive .specTag {
+  background-color: rgba(3, 20, 51, 0.08);
+  border-color: rgba(3, 20, 51, 0.16);
+  color: #031433;
+  font-weight: 500;
 }
 
 /* ── Footer ── */
@@ -315,12 +483,21 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
 }
 
 .footerLine {
   flex: 1;
   height: 1px;
   background-color: rgba(11, 18, 21, 0.1);
+  transition: background-color 0.45s ease;
+}
+
+.card:hover .footerLine,
+.card.cardActive .footerLine {
+  background-color: rgba(3, 20, 51, 0.2);
 }
 
 .learnMore {
@@ -329,12 +506,14 @@
   letter-spacing: 1px;
   color: var(--color-text-muted-dark);
   text-decoration: none;
-  transition: color 200ms ease;
+  transition: color 0.45s ease;
   white-space: nowrap;
 }
 
-.card:hover .learnMore {
-  color: var(--color-accent);
+.card:hover .learnMore,
+.card.cardActive .learnMore {
+  color: #031433;
+  font-weight: 600;
 }
 
 /* ── CTA Row ── */

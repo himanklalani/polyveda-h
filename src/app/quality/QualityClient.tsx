@@ -62,9 +62,9 @@ export default function QualityClient() {
                   <path d="M9 12l2 2 4-4" />
                 </svg>
               </div>
-              <h2 className={styles.cardTitle}>ISO 9001 Certified</h2>
+              <h2 className={styles.cardTitle}>Quality Management Certified</h2>
               <p className={styles.cardText}>
-                Our facilities operate under a rigorous ISO 9001 Quality Management System, ensuring every batch of PP corrugated material meets exact dimensional and tensile tolerances.
+                Our facilities operate under a rigorous Quality Management System, ensuring every batch of PP corrugated material meets exact dimensional and tensile tolerances.
               </p>
             </motion.div>
 

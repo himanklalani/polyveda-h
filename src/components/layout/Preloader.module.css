@@ -50,60 +50,12 @@
   transform-origin: center center;
 }
 
-/* CAD Target Frame */
-.cadFrame {
-  position: absolute;
-  width: clamp(280px, 36vw, 420px);
-  height: clamp(160px, 20vw, 220px);
-  border: 1px dashed rgba(0, 102, 250, 0.22);
-  pointer-events: none;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cornerTL, .cornerTR, .cornerBL, .cornerBR {
-  position: absolute;
-  font-family: monospace;
-  font-size: 14px;
-  color: var(--color-primary);
-  line-height: 1;
-  opacity: 0.7;
-}
-
-.cornerTL { top: -7px; left: -6px; }
-.cornerTR { top: -7px; right: -6px; }
-.cornerBL { bottom: -7px; left: -6px; }
-.cornerBR { bottom: -7px; right: -6px; }
-
-.coordTop {
-  position: absolute;
-  top: -18px;
-  left: 0;
-  font-family: var(--font-base), monospace;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--color-secondary);
-  opacity: 0.6;
-  text-transform: uppercase;
-}
-
-.coordBottom {
-  position: absolute;
-  bottom: -18px;
-  right: 0;
-  font-family: var(--font-base), monospace;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: var(--color-secondary);
-  opacity: 0.6;
-  text-transform: uppercase;
-}
-
 /* Pulsing ring element in electric logo blue */
 .ring {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 260px;
   height: 260px;
   border-radius: 50%;
@@ -113,40 +65,62 @@
 }
 
 /* ────────────────────────────────────────────────────────
-   Flying Logo Badge: Starts in center, springs to bottom-left
+   The White Box that Already Exists in Bottom-Left
    ──────────────────────────────────────────────────────── */
-.flyingLogoBadge {
+.whiteBoxDock {
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10002;
-  padding: 8px 20px 8px 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  bottom: 24px;
+  left: 24px;
+  z-index: 10001;
+  width: 166px;
+  height: 54px;
   border-radius: 8px;
-  isolation: isolate;
+  box-sizing: border-box;
 
-  /* Frosted white glass identical to Navbar floating logo */
-  background: rgba(255, 255, 255, 0.92);
+  /* Frosted white glass matching Navbar floating logo */
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 
   border: 1px solid rgba(3, 44, 119, 0.12);
-  box-shadow: 0 12px 32px rgba(3, 44, 119, 0.12), 0 2px 6px rgba(3, 44, 119, 0.04);
+  box-shadow: 0 8px 24px rgba(3, 44, 119, 0.08), 0 2px 6px rgba(3, 44, 119, 0.04);
+  pointer-events: none;
+}
+
+/* ────────────────────────────────────────────────────────
+   Logo Itself: Without any container, card, or background
+   ──────────────────────────────────────────────────────── */
+.nakedLogo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10002;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  /* Strictly zero container or background */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
   pointer-events: none;
   user-select: none;
   transform-origin: center center;
 }
 
-.flyingLogoImg {
+.nakedLogoImg {
   height: 38px;
   width: auto;
   object-fit: contain;
   display: block;
 }
 
-.flyingLogoText {
+.nakedLogoText {
   font-family: var(--font-heading);
   font-size: 20px;
   font-weight: 700;
@@ -155,7 +129,7 @@
 }
 
 /* ────────────────────────────────────────────────────────
-   Loading Progress & Counter
+   Loading Progress & Asset Download Counter
    ──────────────────────────────────────────────────────── */
 .loadingMeta {
   position: absolute;
@@ -205,17 +179,18 @@
 }
 
 @media (max-width: 768px) {
-  .flyingLogoBadge {
-    padding: 6px 16px 6px 10px;
+  .whiteBoxDock {
+    bottom: 16px;
+    left: 16px;
+    width: 148px;
     height: 50px;
-    box-sizing: border-box;
   }
 
-  .flyingLogoImg {
+  .nakedLogoImg {
     height: 34px;
   }
 
-  .flyingLogoText {
+  .nakedLogoText {
     font-size: 17px;
   }
 

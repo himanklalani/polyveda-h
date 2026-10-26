@@ -35,7 +35,7 @@ const INDUSTRIES = [
     title: 'Electronics & Semiconductor', 
     headline: 'One static discharge can write off a PCB worth thousands.', 
     body1: 'Cellulose fibres from cardboard shed particles that contaminate semiconductor cleanrooms. Standard plastics build up electrostatic charge that destroys sensitive circuitry.', 
-    body2: 'Our ESD-safe packaging uses carbon-loaded PP to dissipate static charges. Sealed edges generate zero particulate matter, qualifying for ISO 5 cleanroom environments.', 
+    body2: 'Our ESD-safe packaging uses carbon-loaded PP to dissipate static charges. Sealed edges generate zero particulate matter, qualifying for Class 5 cleanroom environments.', 
     stat: '10⁶–10⁸ Ω', 
     statLabel: 'Surface resistance of our ESD-safe PP sheet',
     image: 'https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&q=80&w=1200'

@@ -48,12 +48,41 @@ export function TcoCalculator() {
         
         {/* Left Column: Typography */}
         <div className={styles.leftCol}>
-          <span className={styles.eyebrow}>[ TCO Analysis ]</span>
+          <span className={styles.eyebrow}>TCO Analysis</span>
           <h2 className={styles.heading}>Stop Repurchasing. Start Reusing.</h2>
           <p className={styles.description}>
             Cardboard seems cheap until you realize you're paying for it every single trip. 
             Polyveda PP Corrugated boxes are engineered for 50+ logistics cycles, drastically reducing your Total Cost of Ownership.
           </p>
+
+          {/* Technical Lifecycle Comparison Schematic */}
+          <div className={styles.lifecycleSchematic}>
+            <svg viewBox="0 0 360 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Single Use vs Multi-Trip Wireframe */}
+              {/* Cardboard Linear Disposal Trail (Red/Muted) */}
+              <g opacity="0.65">
+                <path d="M40 50 L65 65 L90 50 L65 35 Z" stroke="#EF4444" strokeWidth="1.4" strokeDasharray="3 2" />
+                <path d="M40 50 L40 68 L65 83 L65 65 M90 50 L90 68 L65 83" stroke="#EF4444" strokeWidth="1.4" strokeDasharray="3 2" />
+                <path d="M90 68 L125 90" stroke="#EF4444" strokeWidth="1.4" strokeDasharray="2 2" />
+                <line x1="120" y1="85" x2="130" y2="95" stroke="#EF4444" strokeWidth="2" />
+                <line x1="130" y1="85" x2="120" y2="95" stroke="#EF4444" strokeWidth="2" />
+                <text x="35" y="105" fill="#EF4444" fontSize="10" fontFamily="var(--font-heading)" letterSpacing="1">1 TRIP: LANDFILL</text>
+              </g>
+
+              {/* Polyveda 50+ Loop Orbit (Cobalt #0047BB) */}
+              <g>
+                <ellipse cx="250" cy="58" rx="80" ry="38" stroke="#0047BB" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.4" />
+                <path d="M170 58 C170 78 205 96 250 96 C295 96 330 78 330 58" stroke="#0047BB" strokeWidth="2" />
+                <path d="M324 63 L330 58 L332 66" stroke="#0047BB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                {/* 3D Polyveda Box in Orbit */}
+                <path d="M225 50 L250 64 L275 50 L250 36 Z" stroke="#0047BB" strokeWidth="1.6" fill="rgba(255,255,255,0.85)" />
+                <path d="M225 50 L225 66 L250 80 L250 64 M275 50 L275 66 L250 80" stroke="#0047BB" strokeWidth="1.6" />
+                <line x1="238" y1="58" x2="238" y2="74" stroke="#0047BB" strokeWidth="1.1" opacity="0.5" />
+                <line x1="262" y1="58" x2="262" y2="74" stroke="#0047BB" strokeWidth="1.1" opacity="0.5" />
+                <text x="212" y="105" fill="#0047BB" fontSize="10" fontWeight="600" fontFamily="var(--font-heading)" letterSpacing="1">50+ TRIPS REUSE</text>
+              </g>
+            </svg>
+          </div>
         </div>
 
         {/* Right Column: Double-Bezel Interactive Widget */}

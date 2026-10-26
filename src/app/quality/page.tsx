@@ -4,7 +4,7 @@ import QualityClient from './QualityClient';
 
 export const metadata: Metadata = {
   title: 'Quality & Compliance | Polyveda',
-  description: 'Learn about Polyveda\'s rigorous ISO-certified manufacturing standards, ESD-safe testing, and QA processes for PP corrugated packaging.',
+  description: 'Learn about Polyveda\'s rigorous certified manufacturing standards, ESD-safe testing, and QA processes for PP corrugated packaging.',
 };
 
 export default function QualityPage() {

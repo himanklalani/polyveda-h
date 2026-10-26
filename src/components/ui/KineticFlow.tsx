@@ -78,8 +78,8 @@ const CARDS: CardData[] = [
     eyebrow: 'Cleanroom',
     number: '0',
     title: 'Zero Particulate',
-    desc: 'Sealed edge designs generate no cellulose or fibre particles — fully compatible with ISO Class 7 clean environments.',
-    tag: 'ISO Class 7 Ready',
+    desc: 'Sealed edge designs generate no cellulose or fibre particles — fully compatible with Class 7 clean environments.',
+    tag: 'Class 7 Ready',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="3" />

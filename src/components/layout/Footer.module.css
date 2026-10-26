@@ -31,13 +31,11 @@
   height: auto;
   object-fit: contain;
   display: block;
-  filter: brightness(1.22) contrast(1.08) drop-shadow(0 2px 14px rgba(0, 112, 243, 0.28));
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 
 .brandLockup:hover .logoImg {
-  transform: translateY(-2px);
-  filter: brightness(1.3) contrast(1.12) drop-shadow(0 4px 22px rgba(0, 112, 243, 0.45));
+  opacity: 0.85;
 }
 
 .desc {
