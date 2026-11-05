@@ -189,6 +189,75 @@ const products = [
   },
 ];
 
+// ─── Flowing Material Intelligence & Industrial Telemetry Stream ─────────────────
+interface MarqueeItem {
+  id: string;
+  category: string;
+  highlightNumber?: string;
+  tag?: string;
+  headline: string;
+  detail: string;
+}
+
+const marqueeItems: MarqueeItem[] = [
+  {
+    id: 'm1',
+    category: 'ASTM D570 MOISTURE PROOF',
+    highlightNumber: '0.00%',
+    headline: 'Zero Water Absorption',
+    detail: 'Retains 100% core compressive strength in open monsoon & damp logistics docks',
+  },
+  {
+    id: 'm2',
+    category: 'LIFECYCLE ECONOMICS',
+    highlightNumber: '50+ TRIPS',
+    headline: 'Guaranteed Reusable Turns',
+    detail: '1 Polyveda box outlasts 50 single-use cardboard cartons, reducing spend by 84%',
+  },
+  {
+    id: 'm3',
+    category: 'GLOBAL CUSTOMS',
+    tag: 'ISPM-15 EXEMPT',
+    headline: 'Frictionless Border Clearance',
+    detail: 'Zero heat treatment or quarantine delays across 140+ international shipping lanes',
+  },
+  {
+    id: 'm4',
+    category: 'REVERSE LOGISTICS',
+    highlightNumber: '4:1 RATIO',
+    headline: 'Flat-Folding Volume Efficiency',
+    detail: '75% space saved on backhaul freight, loading 4x more knocked-down units per truck',
+  },
+  {
+    id: 'm5',
+    category: 'CLEANROOM RATED',
+    tag: 'CLASS 10,000',
+    headline: 'Zero Cellulose Dust Shedding',
+    detail: 'Sonic-welded sealed flute edges prevent particulate contamination in pharma & chips',
+  },
+  {
+    id: 'm6',
+    category: 'STATIC DISCHARGE',
+    tag: 'MIL-STD-1686',
+    headline: '10⁴ – 10⁶ Ω Conductive Shielding',
+    detail: 'Permanent ESD carbon matrix protects high-value automotive electronics & PCBs',
+  },
+  {
+    id: 'm7',
+    category: 'EXTREME ENVIRONMENT',
+    highlightNumber: '-20°C to +90°C',
+    headline: 'Cold-Chain Blast Freezer Stable',
+    detail: 'Hydrophobic twin-wall resists condensation sag, glue failure, and sub-zero cracking',
+  },
+  {
+    id: 'm8',
+    category: 'CIRCULAR PACKAGING',
+    tag: 'PP-05 RESIN',
+    headline: '100% Closed-Loop Buy-Back',
+    detail: 'Direct factory re-pelletization program at end of life for zero-landfill compliance',
+  },
+];
+
 const containerVariants: any = {
   hidden: {},
   visible: {
@@ -211,42 +280,89 @@ export function ProductsShowcase() {
 
   return (
     <section className={styles.section} ref={sectionRef}>
-      {/* ── Top Architectural Curtain Divider Bar (Qualitair-style Guillotine Panel) ── */}
-      <div className={styles.curtainTickerBar}>
-        <div className={styles.curtainTickerInner}>
-          <div className={styles.tickerCategoryCell}>
-            <span className={styles.tickerPrefix}>01</span>
-            <Link href="/products/pp-corrugated-boxes" className={styles.tickerLink}>
-              PP CORRUGATED BOXES <span className={styles.tickerArrow}>↗</span>
-            </Link>
+      {/* ── Dynamic Material Intelligence & Telemetry Marquee ── */}
+      <div className={styles.marqueeBar} aria-label="Polyveda Material Intelligence and Engineering Telemetry Stream">
+        <div className={styles.marqueeTrack}>
+          {/* Primary Stream */}
+          <div className={styles.marqueeGroup}>
+            <div className={styles.leadTelemetryNode}>
+              <span className={styles.leadPulseRing}>
+                <span className={styles.leadPulseDot} />
+              </span>
+              <span className={styles.leadTitle}>MATERIAL INTELLIGENCE</span>
+              <span className={styles.leadDivider}>//</span>
+              <span className={styles.leadSub}>FLUTE BOARD TELEMETRY</span>
+            </div>
+
+            {marqueeItems.map((item) => (
+              <React.Fragment key={`p-${item.id}`}>
+                <div className={styles.fluteSeparator} aria-hidden="true" title="Twin-Wall Corrugated PP Flute Profile">
+                  <span className={styles.fluteCrosshair}>+</span>
+                  <svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.fluteSvg}>
+                    <line x1="0" y1="1" x2="28" y2="1" stroke="currentColor" strokeWidth="1.4" opacity="0.4" />
+                    <line x1="0" y1="11" x2="28" y2="11" stroke="currentColor" strokeWidth="1.4" opacity="0.4" />
+                    <path d="M2 11 L6 1 L10 11 L14 1 L18 11 L22 1 L26 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className={styles.fluteCrosshair}>+</span>
+                </div>
+
+                <div className={styles.telemetryCapsule}>
+                  <div className={styles.capsuleHeader}>
+                    <span className={styles.accentCode}>{item.category}</span>
+                    {item.tag && <span className={styles.capsuleTag}>{item.tag}</span>}
+                  </div>
+                  <div className={styles.capsuleBody}>
+                    {item.highlightNumber && (
+                      <span className={styles.highlightNumber}>{item.highlightNumber}</span>
+                    )}
+                    <span className={styles.capsuleHeadline}>{item.headline}</span>
+                    <span className={styles.capsuleDivider}>//</span>
+                    <span className={styles.capsuleDetail}>{item.detail}</span>
+                  </div>
+                </div>
+              </React.Fragment>
+            ))}
           </div>
-          <div className={styles.tickerDivider} />
-          <div className={styles.tickerCategoryCell}>
-            <span className={styles.tickerPrefix}>02</span>
-            <Link href="/products/custom-pp-trays" className={styles.tickerLink}>
-              CUSTOM CNC TRAYS <span className={styles.tickerArrow}>↗</span>
-            </Link>
-          </div>
-          <div className={styles.tickerDivider} />
-          <div className={styles.tickerCategoryCell}>
-            <span className={styles.tickerPrefix}>03</span>
-            <Link href="/products/pp-trunks-crates" className={styles.tickerLink}>
-              HEAVY-DUTY TRUNKS <span className={styles.tickerArrow}>↗</span>
-            </Link>
-          </div>
-          <div className={styles.tickerDivider} />
-          <div className={styles.tickerCategoryCell}>
-            <span className={styles.tickerPrefix}>04</span>
-            <Link href="/products/floor-protection-sheets" className={styles.tickerLink}>
-              FLOOR SHEETS <span className={styles.tickerArrow}>↗</span>
-            </Link>
-          </div>
-          <div className={styles.tickerDivider} />
-          <div className={styles.tickerCategoryCell}>
-            <span className={styles.tickerPrefix}>05</span>
-            <Link href="/products/signage-retail-displays" className={styles.tickerLink}>
-              SIGNAGE & POS <span className={styles.tickerArrow}>↗</span>
-            </Link>
+
+          {/* Secondary Stream (Infinite Seamless Duplicate) */}
+          <div className={styles.marqueeGroup} aria-hidden="true">
+            <div className={styles.leadTelemetryNode}>
+              <span className={styles.leadPulseRing}>
+                <span className={styles.leadPulseDot} />
+              </span>
+              <span className={styles.leadTitle}>MATERIAL INTELLIGENCE</span>
+              <span className={styles.leadDivider}>//</span>
+              <span className={styles.leadSub}>FLUTE BOARD TELEMETRY</span>
+            </div>
+
+            {marqueeItems.map((item) => (
+              <React.Fragment key={`s-${item.id}`}>
+                <div className={styles.fluteSeparator} aria-hidden="true">
+                  <span className={styles.fluteCrosshair}>+</span>
+                  <svg width="28" height="12" viewBox="0 0 28 12" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.fluteSvg}>
+                    <line x1="0" y1="1" x2="28" y2="1" stroke="currentColor" strokeWidth="1.4" opacity="0.4" />
+                    <line x1="0" y1="11" x2="28" y2="11" stroke="currentColor" strokeWidth="1.4" opacity="0.4" />
+                    <path d="M2 11 L6 1 L10 11 L14 1 L18 11 L22 1 L26 11" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className={styles.fluteCrosshair}>+</span>
+                </div>
+
+                <div className={styles.telemetryCapsule}>
+                  <div className={styles.capsuleHeader}>
+                    <span className={styles.accentCode}>{item.category}</span>
+                    {item.tag && <span className={styles.capsuleTag}>{item.tag}</span>}
+                  </div>
+                  <div className={styles.capsuleBody}>
+                    {item.highlightNumber && (
+                      <span className={styles.highlightNumber}>{item.highlightNumber}</span>
+                    )}
+                    <span className={styles.capsuleHeadline}>{item.headline}</span>
+                    <span className={styles.capsuleDivider}>//</span>
+                    <span className={styles.capsuleDetail}>{item.detail}</span>
+                  </div>
+                </div>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>

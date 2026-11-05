@@ -74,14 +74,17 @@
 
 .stackCard {
   position: sticky;
-  top: calc(96px + var(--stack-offset, 0px));
+  top: calc(clamp(16px, 2.4vh, 28px) + var(--stack-offset, 0px));
+  max-height: calc(100dvh - clamp(16px, 2.4vh, 28px) - var(--stack-offset, 0px) - 20px);
   background: #FFFFFF;
   border: 1px solid rgba(3, 44, 119, 0.12);
-  border-radius: 20px;
+  border-radius: 18px;
   box-shadow: 
     0 -4px 20px rgba(3, 44, 119, 0.04),
     0 16px 44px rgba(3, 44, 119, 0.08);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.4s var(--ease-out-smooth), box-shadow 0.4s ease, border-color 0.3s ease;
   will-change: transform;
 }
@@ -98,6 +101,12 @@
   flex-direction: column;
   position: relative;
   background: radial-gradient(circle at 90% 10%, rgba(0, 71, 187, 0.03) 0%, transparent 60%);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.cardInner::-webkit-scrollbar {
+  display: none;
 }
 
 /* ── Card Header Tab ── */
@@ -105,11 +114,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px clamp(20px, 3.5vw, 36px);
+  padding: 12px clamp(18px, 3vw, 32px);
   background: rgba(3, 44, 119, 0.025);
   border-bottom: 1px solid rgba(3, 44, 119, 0.08);
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .headerLeft {
@@ -142,9 +151,9 @@
 /* ── Main 2-Column Content ── */
 .cardContent {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  padding: clamp(28px, 4vw, 44px) clamp(20px, 3.5vw, 36px);
-  gap: clamp(28px, 4vw, 56px);
+  grid-template-columns: 1.15fr 1fr;
+  padding: clamp(16px, 2.4vw, 28px) clamp(18px, 3vw, 32px);
+  gap: clamp(20px, 3vw, 44px);
   align-items: center;
 }
 
@@ -156,27 +165,27 @@
 
 .cardTitle {
   font-family: var(--font-heading);
-  font-size: clamp(24px, 2.6vw, 34px);
+  font-size: clamp(20px, 2.2vw, 28px);
   font-weight: 700;
   color: var(--color-text-dark);
-  line-height: 1.15;
-  letter-spacing: -0.8px;
-  margin: 0 0 16px;
+  line-height: 1.18;
+  letter-spacing: -0.6px;
+  margin: 0 0 10px;
 }
 
 .cardDescription {
   font-family: var(--font-base);
-  font-size: clamp(14px, 1.35vw, 16px);
+  font-size: clamp(13px, 1.15vw, 15px);
   color: var(--color-text-muted-dark);
-  line-height: 1.7;
-  margin: 0 0 28px;
+  line-height: 1.58;
+  margin: 0 0 18px;
 }
 
 /* ── Benchmark Telemetry Chips ── */
 .benchmarksList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
   margin-top: auto;
 }
 
@@ -184,7 +193,7 @@
   background: rgba(3, 44, 119, 0.025);
   border: 1px solid rgba(3, 44, 119, 0.08);
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: 8px 12px;
   transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
@@ -195,17 +204,17 @@
 
 .bmLabel {
   font-family: var(--font-base);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: var(--color-text-muted-dark);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .bmValue {
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #0047BB;
   letter-spacing: -0.2px;
@@ -214,7 +223,7 @@
 /* ── Right Column: CAD Skeleton Stage ── */
 .skeletonStage {
   width: 100%;
-  height: clamp(260px, 30vw, 340px);
+  height: clamp(190px, 20vw, 260px);
   background-color: rgba(3, 44, 119, 0.02);
   border: 1px solid rgba(3, 44, 119, 0.1);
   border-radius: 12px;
@@ -298,8 +307,8 @@
 .svgContainer svg {
   width: 100%;
   height: 100%;
-  max-width: 380px;
-  max-height: 280px;
+  max-width: 320px;
+  max-height: 220px;
   overflow: visible;
   transition: transform 0.4s var(--ease-out-smooth);
 }
@@ -336,23 +345,58 @@
   filter: drop-shadow(0 0 6px rgba(0, 71, 187, 0.4));
 }
 
+/* ── Viewport Height Adaptability (Laptops / Small Screens) ── */
+@media (max-height: 820px) {
+  .stackCard {
+    top: calc(14px + var(--stack-offset, 0px));
+  }
+  .cardHeader {
+    padding: 10px 20px;
+  }
+  .cardContent {
+    padding: 14px 20px;
+    gap: 20px;
+  }
+  .cardTitle {
+    font-size: 21px;
+    margin-bottom: 6px;
+  }
+  .cardDescription {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .skeletonStage {
+    height: 180px;
+  }
+  .benchmarkItem {
+    padding: 6px 10px;
+  }
+  .bmLabel {
+    font-size: 9.5px;
+  }
+  .bmValue {
+    font-size: 12.5px;
+  }
+}
+
 /* ── Responsive Collapse ── */
 @media (max-width: 900px) {
   .cardContent {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 24px 20px;
+    gap: 24px;
+    padding: 18px 16px;
   }
 
   .skeletonStage {
-    height: 240px;
+    height: 200px;
   }
 
   .stackCard {
-    top: calc(80px + var(--stack-offset, 0px));
+    top: calc(16px + var(--stack-offset, 0px));
   }
 
   .cardHeader {
-    padding: 14px 20px;
+    padding: 12px 16px;
   }
 }

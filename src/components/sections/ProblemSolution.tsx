@@ -291,7 +291,7 @@ export function ProblemSolution() {
               key={card.index}
               className={styles.stackCard}
               style={{
-                ['--stack-offset' as any]: `${index * 26}px`,
+                ['--stack-offset' as any]: `${index * 16}px`,
                 zIndex: index + 1,
               }}
               initial={{ opacity: 0, y: 40 }}

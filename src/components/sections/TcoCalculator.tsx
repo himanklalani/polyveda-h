@@ -17,30 +17,41 @@ const pricingTiers: PricingTier[] = [
   { id: 'large', label: 'Large Box (7-Ply)', cardboardCost: 150, polyvedaCost: 900 },
 ];
 
-function AnimatedNumber({ value }: { value: number }) {
+function AnimatedNumber({ value, decimals = 0 }: { value: number; decimals?: number }) {
   const [displayValue, setDisplayValue] = useState(value);
   
   useEffect(() => {
     const controls = animate(displayValue, value, {
       duration: 0.6,
       ease: [0.32, 0.72, 0, 1], // Custom spring-like ease
-      onUpdate: (v) => setDisplayValue(Math.round(v))
+      onUpdate: (v) => setDisplayValue(v)
     });
     return controls.stop;
   }, [value]);
   
-  return <>{displayValue.toLocaleString('en-IN')}</>;
+  if (decimals > 0) {
+    return <>{displayValue.toFixed(decimals)}</>;
+  }
+  return <>{Math.round(displayValue).toLocaleString('en-IN')}</>;
 }
 
 export function TcoCalculator() {
   const [selectedTierId, setSelectedTierId] = useState<string>('medium');
-  const [trips, setTrips] = useState<number>(10);
+  const [trips, setTrips] = useState<number>(50);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const selectedTier = pricingTiers.find((t) => t.id === selectedTierId) || pricingTiers[1];
   
-  const totalCardboard = selectedTier.cardboardCost * trips;
-  const totalPolyveda = selectedTier.polyvedaCost; // Flat cost because it survives 50+ trips
+  // Cardboard is single-use, so every single trip requires buying a brand-new box
+  const cardboardCostPerTrip = selectedTier.cardboardCost;
+  
+  // Polyveda is bought once and reused across all trips
+  const polyvedaCostPerTrip = selectedTier.polyvedaCost / trips;
+  
+  const totalCardboardSpend = selectedTier.cardboardCost * trips;
+  const totalPolyvedaSpend = selectedTier.polyvedaCost;
+  const netSavings = totalCardboardSpend - totalPolyvedaSpend;
+  const savingsPercent = Math.max(0, Math.round((netSavings / totalCardboardSpend) * 100));
 
   return (
     <section className={styles.calculatorSection}>
@@ -51,8 +62,8 @@ export function TcoCalculator() {
           <span className={styles.eyebrow}>TCO Analysis</span>
           <h2 className={styles.heading}>Stop Repurchasing. Start Reusing.</h2>
           <p className={styles.description}>
-            Cardboard seems cheap until you realize you're paying for it every single trip. 
-            Polyveda PP Corrugated boxes are engineered for 50+ logistics cycles, drastically reducing your Total Cost of Ownership.
+            Cardboard seems cheap at ₹45 per box until you calculate buying it 50 times. 
+            Polyveda PP corrugated boxes are engineered for 50+ return rotations, slashing your effective cost per trip by over 80%.
           </p>
 
           {/* Technical Lifecycle Comparison Schematic */}
@@ -131,27 +142,40 @@ export function TcoCalculator() {
               </div>
               <input 
                 type="range" 
-                min="1" 
-                max="50" 
+                min="20" 
+                max="100" 
+                step="5"
                 value={trips} 
                 onChange={(e) => setTrips(parseInt(e.target.value))}
                 className={styles.rangeInput}
               />
             </div>
 
-            {/* Results Grid */}
+            {/* Results Grid - Clean Minimal Contrast */}
             <div className={styles.resultsGrid}>
               <div className={styles.resultCard}>
-                <span className={styles.resultLabel}>Cardboard Total Cost</span>
-                <span className={styles.resultPrice}>
-                  ₹<AnimatedNumber value={totalCardboard} />
+                <span className={styles.resultLabel}>Cardboard (Single-Use)</span>
+                <div className={styles.priceRow}>
+                  <span className={styles.resultPrice}>
+                    ₹<AnimatedNumber value={cardboardCostPerTrip} />
+                  </span>
+                  <span className={styles.perTripUnit}>/ trip</span>
+                </div>
+                <span className={styles.resultSubtext}>
+                  ₹{totalCardboardSpend.toLocaleString('en-IN')} across {trips} trips
                 </span>
               </div>
               
               <div className={`${styles.resultCard} ${styles.polyvedaResult}`}>
-                <span className={styles.resultLabel}>Polyveda PP Cost</span>
-                <span className={styles.resultPrice}>
-                  ₹<AnimatedNumber value={totalPolyveda} />
+                <span className={styles.resultLabel}>Polyveda PP (Reusable)</span>
+                <div className={styles.priceRow}>
+                  <span className={styles.resultPrice}>
+                    ₹<AnimatedNumber value={polyvedaCostPerTrip} decimals={1} />
+                  </span>
+                  <span className={styles.perTripUnit}>/ trip</span>
+                </div>
+                <span className={styles.resultSubtext}>
+                  ₹{totalPolyvedaSpend.toLocaleString('en-IN')} one-time · {savingsPercent}% savings
                 </span>
               </div>
             </div>
